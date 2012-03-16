@@ -31,61 +31,28 @@
 ;; font
 ;;
 
-
-;; Ricty {{{2 (http://save.sys.t.u-tokyo.ac.jp/~yusa/fonts/ricty.html)
-;; (set-face-attribute 'default nil
-;;                     :family "Ricty"
-;;                     :height 160)
-;; (set-fontset-font
-;;  nil 'japanese-jisx0208
-;;  (font-spec :family "Ricty"))
-
-(when (>= emacs-major-version 23)
- (set-face-attribute 'default nil
-                     :family "monaco"
-                     :height 120)
- (set-fontset-font
-  (frame-parameter nil 'font)
-  'japanese-jisx0208
-  '("Hiragino Maru Gothic Pro" . "iso10646-1"))
- (set-fontset-font
-  (frame-parameter nil 'font)
-  'japanese-jisx0212
-  '("Hiragino Maru Gothic Pro" . "iso10646-1"))
- (set-fontset-font
-  (frame-parameter nil 'font)
-  'mule-unicode-0100-24ff
-  '("monaco" . "iso10646-1"))
- ;; 半角カナの
- (set-fontset-font
-  (frame-parameter nil 'font)
-  'katakana-jisx0201
-  '("Hiragino Maru Gothic Pro" . "iso10646-1"))
- (setq face-font-rescale-alist
-       '(("^-apple-hiragino.*" . 1.2)
-        (".*osaka-bold.*" . 1.2)
-        (".*osaka-medium.*" . 1.2)
-        (".*courier-bold-.*-mac-roman" . 1.0)
-        (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
-        (".*monaco-bold-.*-mac-roman" . 0.9)
-        ("-cdac$" . 1.3))))
+(let* ((size 16)
+       (asciifont "Ricty") ; ASCII fonts
+       (jpfont "Ricty") ; Japanese fonts
+       (h (* size 10))
+       (fontspec (font-spec :family asciifont))
+       (jp-fontspec (font-spec :family jpfont)))
+  (set-face-attribute 'default nil :family asciifont :height h)
+  (set-fontset-font nil 'japanese-jisx0213.2004-1 jp-fontspec)
+  (set-fontset-font nil 'japanese-jisx0213-2 jp-fontspec)
+  (set-fontset-font nil 'katakana-jisx0201 jp-fontspec)
+  (set-fontset-font nil '(#x0080 . #x024F) fontspec) 
+  (set-fontset-font nil '(#x0370 . #x03FF) fontspec))
 
 ;;
 ;; color
 ;;
 
-(if window-system (progn
-  (set-background-color "black")
-  (set-foreground-color "white")
-  (set-cursor-color "yellow")
-))
-(set-frame-parameter nil 'alpha 80)
+;; 文字の色を設定します。
+(add-to-list 'default-frame-alist '(foreground-color . "white"))
+;; 背景色を設定します。
+(add-to-list 'default-frame-alist '(background-color . "black"))
+;; カーソルの色を設定します。
+(add-to-list 'default-frame-alist '(cursor-color . "yellow"))
 
-;; タブ, 全角スペースを表示する
-(setq whitespace-style
-      '(tabs space-mark))
-(setq whitespace-space-regexp "\\( +\\|\u3000+\\)")
-(setq whitespace-display-mappings
-      '((space-mark ?\u3000 [?\u25a1])))
-(require 'whitespace)
-(global-whitespace-mode 1)
+(set-frame-parameter nil 'alpha 80)
