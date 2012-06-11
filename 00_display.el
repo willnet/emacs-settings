@@ -50,15 +50,10 @@
   (set-fontset-font nil '(#x0080 . #x024F) fontspec) 
   (set-fontset-font nil '(#x0370 . #x03FF) fontspec))
 
-;;
-;; color
-;;
-
-;; 文字の色を設定します。
-(add-to-list 'default-frame-alist '(foreground-color . "white"))
-;; 背景色を設定します。
-(add-to-list 'default-frame-alist '(background-color . "black"))
-;; カーソルの色を設定します。
-(add-to-list 'default-frame-alist '(cursor-color . "yellow"))
-
-(set-frame-parameter nil 'alpha 80)
+;; color-theme
+;; color-theme.el
+(when (require 'color-theme)
+  (color-theme-initialize)
+  ;; color-theme-solorized.el
+  (when (require 'color-theme-solarized)
+    (color-theme-solarized-dark)))
