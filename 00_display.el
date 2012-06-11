@@ -4,6 +4,9 @@
 ;; インデントにタブを使用することを禁止
 (setq-default indent-tabs-mode nil)
 
+;; ツールバーを消す
+(tool-bar-mode 0)
+
 ;; C-x 3 時に文字を折り返す
 (setq truncate-partial-width-windows nil)
 
