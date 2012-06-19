@@ -4,3 +4,4 @@
 (require 'elscreen)
 
 (global-set-key [C-tab] 'elscreen-next)
+(global-set-key [S-C-tab] 'elscreen-previous)
