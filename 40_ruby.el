@@ -1,3 +1,8 @@
+;; path の設定
+(dolist (dir (mapcar 'expand-file-name '("/Users/maeshima/.rbenv/shims")))
+  (setenv "PATH" (concat dir ":" (getenv "PATH")))
+  (setq exec-path (append (list dir) exec-path)))
+
 ;; ruby-mode
 (autoload 'ruby-mode "ruby-mode"
   "Mode for editing ruby source files" t)
