@@ -76,3 +76,10 @@
         )
       (setq count (1- count)))))
 
+;; for ruby-block.el
+;; http://d.hatena.ne.jp/eiel/20101106#1289059080?utm_source=twitterfeed&utm_medium=twitter
+(require 'ruby-block)
+(setq ruby-block-highlight-toggle t)
+(defun ruby-mode-hook-ruby-block()
+  (ruby-block-mode t))
+(add-hook 'ruby-mode-hook 'ruby-mode-hook-ruby-block)
