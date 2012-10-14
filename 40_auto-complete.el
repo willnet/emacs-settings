@@ -1,6 +1,5 @@
-;; git clone git://github.com/m2ym/auto-complete.git
 (require 'auto-complete)
-(require 'auto-complete-config)    ; 必須ではないですが一応
+(require 'auto-complete-config)
 (global-auto-complete-mode t)
 (setq ac-dwim t)
 
@@ -9,6 +8,8 @@
 ;;(ac-set-trigger-key "\M-i") ; コンテキストに応じて補完
 ;;(global-set-key "\M-/" 'ac-start)
 
-(define-key ac-complete-mode-map "\C-n" 'ac-next)
-(define-key ac-complete-mode-map "\C-p" 'ac-previous)
+;; (setq ac-use-menu-map t)
+;; (define-key ac-menu-map "\C-n" 'ac-next)
+;; (define-key ac-menu-map "\C-p" 'ac-previous)
 
+(require 'auto-complete-etags)
