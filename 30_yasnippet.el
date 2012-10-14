@@ -8,3 +8,10 @@
 '(yas/dropdown-prompt yas/completing-prompt yas/ido-prompt yas/no-prompt))
 
 (setq yas-trigger-key "C-i")
+
+;; (require 'auto-complete-config)
+;; (yas/set-ac-modes)
+;; (yas/enable-emacs-lisp-paren-hack)
+;; ;; いろいろな情報源を使いたいならば (ac-config-default) にする
+;; (setq-default ac-sources '(ac-source-yasnippet))
+;; (global-auto-complete-mode 1)
