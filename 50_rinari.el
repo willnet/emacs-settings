@@ -11,10 +11,13 @@
 
 (setf
  my-rinari-jump-schema
- '((my-stylesheet "y" ((t . "app/assets/stylesheets/.*")
-                    (t . "public/stylesheets/.*")) nil)
-   (my-javascript "j" ((t . "app/assets/javascripts/.*")
-                    (t . "public/javascripts/.*")) nil)
+ '((my-stylesheet "y" ((t . "app/assets/stylesheets/.*")) nil)
+   (my-javascript "j" ((t . "app/assets/javascripts/.*")) nil)
+   (my-backbone-template "m" ((t . "app/assets/javascripts/templates/.*")) nil)
+   (my-backbone-model "m" ((t . "app/assets/javascripts/backbone/models/.*")) nil)
+   (my-backbone-view "m" ((t . "app/assets/javascripts/backbone/views/.*")) nil)
+   (my-backbone-router "m" ((t . "app/assets/javascripts/backbone/routers/.*")) nil)
+
    (my-fabrication "f" ((t . "spec/fabricators/.*")) nil)
    (my-rspec
     "t"
@@ -39,6 +42,7 @@
    ))
 
 (add-to-list 'auto-mode-alist '("\\.text\\.erb$" . rhtml-mode))
+(add-to-list 'auto-mode-alist '("\\.jst\\.eco$" . rhtml-mode))
 
 (rinari-apply-jump-schema my-rinari-jump-schema)
 
@@ -56,10 +60,17 @@
 (define-key rinari-minor-mode-map (kbd "C-c t") 'rinari-find-my-rspec)
 (define-key rinari-minor-mode-map (kbd "C-c f") 'rinari-find-my-fabrication)
 (define-key rinari-minor-mode-map (kbd "C-c y") 'rinari-find-my-stylesheet)
-(define-key rinari-minor-mode-map (kbd "C-c j") 'rinari-find-my-javascript)
 (define-key rinari-minor-mode-map (kbd "C-c d") 'rinari-find-my-decorator)
-(define-key rinari-minor-mode-map (kbd "C-c x") 'rinari-extract-partial)
-(define-key rinari-minor-mode-map (kbd "C-c p") 'rinari-console)
+(define-key rinari-minor-mode-map (kbd "C-c j") 'rinari-find-my-javascript)
+(define-key rinari-minor-mode-map (kbd "C-c C-j m") 'rinari-find-my-backbone-model)
+(define-key rinari-minor-mode-map (kbd "C-c C-j r") 'rinari-find-my-backbone-router)
+(define-key rinari-minor-mode-map (kbd "C-c C-j v") 'rinari-find-my-backbone-view)
+(define-key rinari-minor-mode-map (kbd "C-c C-j t") 'rinari-find-my-backbone-template)
+(define-key rinari-minor-mode-map (kbd "C-c C-c x") 'rinari-extract-partial)
+(define-key rinari-minor-mode-map (kbd "C-c C-c p") 'rinari-console)
+(define-key rinari-minor-mode-map (kbd "C-c C-c w") 'rinari-web-server)
+(define-key rinari-minor-mode-map (kbd "C-c C-c r") 'rinari-web-server-restart)
+
 (define-key rinari-minor-mode-map (kbd "C-c C-c c") 'rinari-cap)
 
 (defun my-find-gemfile ()
