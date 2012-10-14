@@ -11,6 +11,8 @@
 
 ;; バックアップファイルを残さない
 (setq make-backup-files nil)
+;; .#* とかのバックアップファイルを作らない
+(setq auto-save-default nil)
 
 ;; Dropbox対策
 ;; http://d.hatena.ne.jp/naotoakiyama/20081124/1227538925
@@ -23,4 +25,3 @@
 (dolist (dir (mapcar 'expand-file-name '("/usr/local/bin")))
   (setenv "PATH" (concat dir ":" (getenv "PATH")))
   (setq exec-path (append (list dir) exec-path)))
-
