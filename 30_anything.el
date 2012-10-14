@@ -1,10 +1,9 @@
 ;; anytning.el用のキーバインド設定
-(require 'anything)
-(require 'anything-config)
+(require 'anything-startup)
 
-(define-key global-map (kbd "C-;") 'anything)
-(define-key anything-map (kbd "C-v") 'anything-next-source)
-(define-key anything-map (kbd "M-v") 'anything-previous-source)
+;; (define-key global-map (kbd "C-;") 'anything)
+;; (define-key anything-map (kbd "C-v") 'anything-next-source)
+;; (define-key anything-map (kbd "M-v") 'anything-previous-source)
 
 ;; キーバインドの説明をanythingで
 ;; (require 'descbinds-anything)
@@ -59,19 +58,51 @@
 ;;        '(delayed)
 ;;        '(requires-pattern . 3))) ;; 何文字入力したらrefe2xが候補に入るか
 
-(setq anything-sources (list anything-c-source-buffers
-                             anything-c-source-bookmarks
-                             anything-c-source-recentf
-                             anything-c-source-file-name-history
-                             ))
+;; (setq anything-sources (list anything-c-source-buffers
+;;                              anything-c-source-bookmarks
+;;                              anything-c-source-recentf
+;;                              anything-c-source-file-name-history
+;;                              ))
 
-(require 'anything-rurima)
-(setq anything-rurima-index-file "~/Dropbox/emacs-lisp/rurima/rubydoc/rurima.e")
+;; (require 'anything-rurima)
+;; (setq anything-rurima-index-file "~/Dropbox/emacs-lisp/rurima/rubydoc/rurima.e")
 
+(global-set-key (kbd "C-;") 'anything-filelist+)
+(setq anything-c-filelist-file-name "/tmp/all.filelist")
+(setq anything-grep-candidates-fast-directory-regexp "^/tmp")
 
 ;; kill-ring http://www.flatz.jp/archives/category/blog/%E6%8A%80%E8%A1%93%E6%83%85%E5%A0%B1/emacs
 ;; kill-ring の最大値. デフォルトは 30.
-(setq kill-ring-max 20)
+;;(setq kill-ring-max 20)
 ;; anything で対象とするkill-ring の要素の長さの最小値.デフォルトは 10.
-(setq anything-kill-ring-threshold 5)
-(global-set-key "\M-y" 'anything-show-kill-ring)
+;; (setq anything-kill-ring-threshold 5)
+;;(global-set-key "\M-y" 'anything-show-kill-ring)
+
+
+;; http://qiita.com/items/2940
+(defun anything-c-sources-git-project-for (pwd)
+  (loop for elt in
+        '(("Modified files (%s)" . "--modified")
+          ("Untracked files (%s)" . "--others --exclude-standard")
+          ("All controlled files in this project (%s)" . ""))
+        collect
+        `((name . ,(format (car elt) pwd))
+          (init . (lambda ()
+                    (unless (and ,(string= (cdr elt) "") ;update candidate buffer every time except for that of all project files
+                                 (anything-candidate-buffer))
+                      (with-current-buffer
+                          (anything-candidate-buffer 'global)
+                        (insert
+                         (shell-command-to-string
+                          ,(format "git ls-files $(git rev-parse --show-cdup) %s"
+                                   (cdr elt))))))))
+          (candidates-in-buffer)
+          (type . file))))
+
+(defun anything-git-project ()
+  (interactive)
+  (let* ((pwd (shell-command-to-string "echo -n `pwd`"))
+         (sources (anything-c-sources-git-project-for pwd)))
+    (anything-other-buffer sources
+     (format "*Anything git project in %s*" pwd))))
+(define-key global-map (kbd "C-:") 'anything-git-project)
