@@ -38,8 +38,7 @@
 (global-set-key (kbd "C-x v d") 'magit-status)
 (global-set-key (kbd "C-x v L") 'magit-key-mode-popup-logging)
 (global-set-key (kbd "C-x v z") 'magit-stash)
-
 (global-unset-key (kbd "C-l"))
 (global-set-key (kbd "C-l C-l") 'recenter-top-bottom)
-
 (global-unset-key (kbd "C-t"))
+(global-set-key [(f1)] (lambda () (interactive) (manual-entry (current-word))))
