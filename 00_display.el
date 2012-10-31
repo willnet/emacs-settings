@@ -40,7 +40,7 @@
 ;; font
 ;;
 
-(let* ((size 18)
+(let* ((size 15)
        (asciifont "Ricty") ; ASCII fonts
        (jpfont "Ricty") ; Japanese fonts
        (h (* size 10))

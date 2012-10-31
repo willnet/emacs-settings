@@ -41,3 +41,5 @@
 
 (global-unset-key (kbd "C-l"))
 (global-set-key (kbd "C-l C-l") 'recenter-top-bottom)
+
+(global-unset-key (kbd "C-t"))
