@@ -1,6 +1,6 @@
 ;; http://code.google.com/p/js2-mode/
 (setq-default c-basic-offset 2)
-(autoload 'js2-mode "js2" nil t)
+(autoload 'js2-mode "js2-mode" nil t)
 
 (setq js2-cleanup-whitespace nil
       js2-mirror-mode nil
