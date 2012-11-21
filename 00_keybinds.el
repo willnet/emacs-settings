@@ -34,6 +34,9 @@
 ;; 別ウィンドウでDired
 (define-key global-map (kbd "C-x C-d") 'dired-jump-other-window)
 
+;; 再読み込み
+(define-key global-map (kbd "C-x C-r") 'revert-buffer)
+
 ;; magit
 (global-set-key (kbd "C-x v d") 'magit-status)
 (global-set-key (kbd "C-x v L") 'magit-key-mode-popup-logging)
