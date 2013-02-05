@@ -5,7 +5,8 @@
 (setq js2-cleanup-whitespace nil
       js2-mirror-mode nil
       js2-bounce-indent-flag nil
-      js2-strict-inconsistent-return-warning nil) ;; function中で値を返すreturnが存在し、値を返さない場合がある(if文などで)時にエラー表示になるのを抑制
+      js2-strict-inconsistent-return-warning nil  ;; function中で値を返すreturnが存在し、値を返さない場合がある(if文などで)時にエラー表示になるのを抑制
+      js2-strict-cond-assign-warning nil)
 
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.unpacked$" . js2-mode))
