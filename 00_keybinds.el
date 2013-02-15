@@ -41,3 +41,6 @@
 (global-unset-key (kbd "C-l"))
 (global-set-key (kbd "C-l C-l") 'recenter-top-bottom)
 (global-set-key [(f1)] (lambda () (interactive) (manual-entry (current-word))))
+
+;; kill-sentence のキーバインドを削除
+(global-unset-key (kbd "M-k"))
