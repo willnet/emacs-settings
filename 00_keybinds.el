@@ -20,7 +20,7 @@
 (global-set-key (kbd "C-x p") (lambda () (interactive) (other-window -1)))
 
 ;; rgrep
-(define-key global-map (kbd "C-x g") 'rgrep)
+(define-key global-map (kbd "C-.") 'rgrep)
 
 ;; anything-rurema
 (define-key global-map (kbd "C-c a") 'anything-rurima)
