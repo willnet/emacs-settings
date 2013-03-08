@@ -1,7 +1,7 @@
 ;; path の設定
-(dolist (dir (mapcar 'expand-file-name '("/Users/maeshima/.rbenv/shims")))
-  (setenv "PATH" (concat dir ":" (getenv "PATH")))
-  (setq exec-path (append (list dir) exec-path)))
+;; (dolist (dir (mapcar 'expand-file-name '("/Users/maeshima/.rbenv/shims")))
+;;   (setenv "PATH" (concat dir ":" (getenv "PATH")))
+;;   (setq exec-path (append (list dir) exec-path)))
 
 ;; ruby-mode
 (autoload 'ruby-mode "ruby-mode"
@@ -11,6 +11,7 @@
 (add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.erb$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rabl$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Guardfile" . ruby-mode))

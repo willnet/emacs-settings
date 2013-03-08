@@ -22,12 +22,6 @@
 ;; rgrep
 (define-key global-map (kbd "C-<") 'rgrep)
 
-;; anything-rurema
-(define-key global-map (kbd "C-c a") 'anything-rurima)
-
-;; anything-rurema-at-point
-;;(define-key global-map (kbd "C-c a r") 'anything-rurima-at-point)
-
 ;; 別ウィンドウでDired
 (define-key global-map (kbd "C-x C-d") 'dired-jump-other-window)
 
