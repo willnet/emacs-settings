@@ -5,3 +5,8 @@
 (define-key dired-mode-map "r"
   'wdired-change-to-wdired-mode)
 (require 'dired-x)
+
+(add-hook 'dired-mode-hook
+  (lambda ()
+    (define-key dired-mode-map (kbd "C-o") 'other-window-or-split)
+    ))
