@@ -9,4 +9,5 @@
 (add-hook 'dired-mode-hook
   (lambda ()
     (define-key dired-mode-map (kbd "C-o") 'other-window-or-split)
+    (local-unset-key (kbd "C-t"))
     ))
