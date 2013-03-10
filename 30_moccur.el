@@ -12,3 +12,4 @@
 ;; moccur 系のバッファ内で r を押すと編集モードに
 (require 'moccur-edit)
 
+(global-set-key (kbd "M-o") 'occur-by-moccur)
