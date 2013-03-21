@@ -1,4 +1,5 @@
-(load "~/.emacs.d/vendor/haskell-mode/haskell-mode.el")
+;; (load "~/.emacs.d/vendor/haskell-mode/haskell-mode.el")
+(require 'haskell-mode)
 (add-to-list 'auto-mode-alist '("\\.hs$" . haskell-mode))
 (add-to-list 'auto-mode-alist '("\\.lhs$" . literate-haskell-mode))
 (add-to-list 'auto-mode-alist '("\\.cabal\\'" . haskell-cabal-mode))
